@@ -1,4 +1,4 @@
-# Open Punks
+# Lucero Sugar Skulls
 
 ## Technology Stack & Tools
 
