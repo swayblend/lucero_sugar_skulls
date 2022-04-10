@@ -1,4 +1,4 @@
-const LuceroSugarSkullz = artifacts.require("./LuceroSugarSkullz")
+const LuceroSugarSkulls = artifacts.require("./LuceroSugarSkulls")
 
 require('chai')
     .use(require('chai-as-promised'))
@@ -6,9 +6,9 @@ require('chai')
 
 const EVM_REVERT = 'VM Exception while processing transaction: revert'
 
-contract('LuceroSugarSkullz', ([deployer, user]) => {
+contract('LuceroSugarSkulls', ([deployer, user]) => {
 
-    const NAME = 'Lucero Sugar Skullz'
+    const NAME = 'Lucero Sugar Skulls'
     const SYMBOL = 'LSS'
     const COST = 0
     const MAX_SUPPLY = 1000
@@ -17,7 +17,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
     const IPFS_IMAGE_METADATA_URI = 'ipfs://IPFS-IMAGE-METADATA-CID/'
     const IPFS_HIDDEN_IMAGE_METADATA_URI = 'ipfs://IPFS-HIDDEN-METADATA-CID/hidden.json'
 
-    let luceroSugarSkullz
+    let luceroSugarSkulls
 
     describe('Deployment', () => {
 
@@ -27,7 +27,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
         beforeEach(async () => {
             const NFT_MINT_DATE = (Date.now() + milliseconds).toString().slice(0, 10)
 
-            luceroSugarSkullz = await LuceroSugarSkullz.new(
+            luceroSugarSkulls = await LuceroSugarSkulls.new(
                 NAME,
                 SYMBOL,
                 COST,
@@ -41,32 +41,32 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
         })
 
         it('Returns the contract name', async () => {
-            result = await luceroSugarSkullz.name()
+            result = await luceroSugarSkulls.name()
             result.should.equal(NAME)
         })
 
         it('Returns the symbol', async () => {
-            result = await luceroSugarSkullz.symbol()
+            result = await luceroSugarSkulls.symbol()
             result.should.equal(SYMBOL)
         })
 
         it('Returns the cost to mint', async () => {
-            result = await luceroSugarSkullz.cost()
+            result = await luceroSugarSkulls.cost()
             result.toString().should.equal(COST.toString())
         })
 
         it('Returns the max supply', async () => {
-            result = await luceroSugarSkullz.maxSupply()
+            result = await luceroSugarSkulls.maxSupply()
             result.toString().should.equal(MAX_SUPPLY.toString())
         })
 
         it('Returns the max mint amount', async () => {
-            result = await luceroSugarSkullz.maxMintAmount()
+            result = await luceroSugarSkulls.maxMintAmount()
             result.toString().should.equal('1')
         })
 
         it('Returns the time deployed', async () => {
-            result = await luceroSugarSkullz.timeDeployed()
+            result = await luceroSugarSkulls.timeDeployed()
 
             if (result > 0) {
                 assert.isTrue(true)
@@ -79,7 +79,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
         it('Returns the amount of seconds from deployment to wait until minting', async () => {
             let buffer = 2
             let target = Number(milliseconds.toString().slice(0, 3))
-            result = await luceroSugarSkullz.allowMintingAfter()
+            result = await luceroSugarSkulls.allowMintingAfter()
             result = Number(result)
 
             // NOTE: Sometimes the seconds may be off by 1, As long as the seconds are 
@@ -94,7 +94,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
         it('Returns how many seconds left until minting allowed', async () => {
             let buffer = 2
             let target = Number(milliseconds.toString().slice(0, 3))
-            result = await luceroSugarSkullz.getSecondsUntilMinting()
+            result = await luceroSugarSkulls.getSecondsUntilMinting()
             result = Number(result)
 
             // NOTE: Sometimes the seconds may be off by 1, As long as the seconds are 
@@ -107,12 +107,12 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
         })
 
         it('Returns current pause state', async () => {
-            result = await luceroSugarSkullz.isPaused()
+            result = await luceroSugarSkulls.isPaused()
             result.toString().should.equal('false')
         })
 
         it('Returns current reveal state', async () => {
-            result = await luceroSugarSkullz.isRevealed()
+            result = await luceroSugarSkulls.isRevealed()
             result.toString().should.equal('true')
         })
     })
@@ -125,7 +125,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
             beforeEach(async () => {
                 const NFT_MINT_DATE = Date.now().toString().slice(0, 10)
 
-                luceroSugarSkullz = await LuceroSugarSkullz.new(
+                luceroSugarSkulls = await LuceroSugarSkulls.new(
                     NAME,
                     SYMBOL,
                     COST,
@@ -135,7 +135,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
                     IPFS_HIDDEN_IMAGE_METADATA_URI,
                 )
 
-                result = await luceroSugarSkullz.mint(1, { from: user, value: web3.utils.toWei('0', 'ether') })
+                result = await luceroSugarSkulls.mint(1, { from: user, value: web3.utils.toWei('0', 'ether') })
             })
 
             it('Returns the address of the minter', async () => {
@@ -144,22 +144,22 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
             })
 
             it('Updates the total supply', async () => {
-                result = await luceroSugarSkullz.totalSupply()
+                result = await luceroSugarSkulls.totalSupply()
                 result.toString().should.equal('1')
             })
 
             it('Returns IPFS URI', async () => {
-                result = await luceroSugarSkullz.tokenURI(1)
+                result = await luceroSugarSkulls.tokenURI(1)
                 result.should.equal(`${IPFS_IMAGE_METADATA_URI}1.json`)
             })
 
             it('Returns how many a minter owns', async () => {
-                result = await luceroSugarSkullz.balanceOf(user)
+                result = await luceroSugarSkulls.balanceOf(user)
                 result.toString().should.equal('1')
             })
 
             it('Returns the IDs of minted NFTs', async () => {
-                result = await luceroSugarSkullz.walletOfOwner(user)
+                result = await luceroSugarSkulls.walletOfOwner(user)
                 result.length.should.equal(1)
                 result[0].toString().should.equal('1')
             })
@@ -171,9 +171,9 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
 
             beforeEach(async () => {
                 // Some date in the future
-                const NFT_MINT_DATE = new Date("Apr 10, 2022 24:00:00").getTime().toString().slice(0, 10)
+                const NFT_MINT_DATE = new Date("Apr 10, 2022 02:00:00").getTime().toString().slice(0, 10)
 
-                luceroSugarSkullz = await LuceroSugarSkullz.new(
+                luceroSugarSkulls = await LuceroSugarSkulls.new(
                     NAME,
                     SYMBOL,
                     COST,
@@ -185,7 +185,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
             })
 
             it('Attempt to mint before mint date', async () => {
-                await luceroSugarSkullz.mint(1, { from: user, value: web3.utils.toWei('0', 'ether') }).should.be.rejectedWith(EVM_REVERT)
+                await luceroSugarSkulls.mint(1, { from: user, value: web3.utils.toWei('0', 'ether') }).should.be.rejectedWith(EVM_REVERT)
             })
         })
     })
@@ -198,7 +198,7 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
             beforeEach(async () => {
                 const NFT_MINT_DATE = Date.now().toString().slice(0, 10)
 
-                luceroSugarSkullz = await LuceroSugarSkullz.new(
+                luceroSugarSkulls = await LuceroSugarSkulls.new(
                     NAME,
                     SYMBOL,
                     COST,
@@ -211,43 +211,43 @@ contract('LuceroSugarSkullz', ([deployer, user]) => {
 
             it('Sets the cost', async () => {
                 let cost = web3.utils.toWei('1', 'ether')
-                await luceroSugarSkullz.setCost(cost, { from: deployer })
-                result = await luceroSugarSkullz.cost()
+                await luceroSugarSkulls.setCost(cost, { from: deployer })
+                result = await luceroSugarSkulls.cost()
                 result.toString().should.equal(cost)
             })
 
             it('Sets the pause state', async () => {
                 let isPaused = true // Opposite of the default contract state
-                await luceroSugarSkullz.setIsPaused(isPaused, { from: deployer })
-                result = await luceroSugarSkullz.isPaused()
+                await luceroSugarSkulls.setIsPaused(isPaused, { from: deployer })
+                result = await luceroSugarSkulls.isPaused()
                 result.toString().should.equal(isPaused.toString())
             })
 
             it('Sets the reveal state', async () => {
                 let isRevealed = false // Opposite of the default contract state
-                await luceroSugarSkullz.setIsRevealed(isRevealed, { from: deployer })
-                result = await luceroSugarSkullz.isRevealed()
+                await luceroSugarSkulls.setIsRevealed(isRevealed, { from: deployer })
+                result = await luceroSugarSkulls.isRevealed()
                 result.toString().should.equal(isRevealed.toString())
             })
 
             it('Sets the max batch mint amount', async () => {
-                let amount = 5 // Different from the default contract state
-                await luceroSugarSkullz.setmaxMintAmount(5, { from: deployer })
-                result = await luceroSugarSkullz.maxMintAmount()
+                let amount = 1 // Different from the default contract state
+                await luceroSugarSkulls.setmaxMintAmount(1, { from: deployer })
+                result = await luceroSugarSkulls.maxMintAmount()
                 result.toString().should.equal(amount.toString())
             })
 
             it('Sets the IPFS not revealed URI', async () => {
                 let uri = 'ipfs://IPFS-NEW-IMAGE-METADATA-CID/' // Different from the default contract state
-                await luceroSugarSkullz.setNotRevealedURI(uri, { from: deployer })
-                result = await luceroSugarSkullz.notRevealedUri()
+                await luceroSugarSkulls.setNotRevealedURI(uri, { from: deployer })
+                result = await luceroSugarSkulls.notRevealedUri()
                 result.toString().should.equal(uri)
             })
 
             it('Sets the base extension', async () => {
                 let extension = '.example' // Different from the default contract state
-                await luceroSugarSkullz.setBaseExtension('.example', { from: deployer })
-                result = await luceroSugarSkullz.baseExtension()
+                await luceroSugarSkulls.setBaseExtension('.example', { from: deployer })
+                result = await luceroSugarSkulls.baseExtension()
                 result.toString().should.equal(extension)
             })
         })

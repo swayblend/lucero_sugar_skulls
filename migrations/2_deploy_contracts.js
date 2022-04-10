@@ -1,4 +1,4 @@
-const LuceroSugarSkullz = artifacts.require("LuceroSugarSkullz")
+const LuceroSugarSkulls = artifacts.require("LuceroSugarSkulls")
 
 module.exports = async function (deployer) {
 
@@ -7,7 +7,7 @@ module.exports = async function (deployer) {
     const NFT_MINT_DATE = new Date(process.env.NFT_MINT_DATE).getTime().toString().slice(0, 10)
 
     await deployer.deploy(
-        LuceroSugarSkullz,
+        LuceroSugarSkulls,
         process.env.PROJECT_NAME,
         process.env.PROJECT_SYMBOL,
         process.env.MINT_COST,
