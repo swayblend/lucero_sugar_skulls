@@ -1410,12 +1410,12 @@ abstract contract Ownable is Context {
 
 pragma solidity >=0.7.0 <0.9.0;
 
-contract LuceroSugarSkulls is ERC721Enumerable, Ownable {
+contract LuceroSugarSkullz is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     string baseURI;
     string public baseExtension = ".json";
-    uint256 public cost;
+    uint256 public cost = 0;
     uint256 public maxSupply;
     uint256 public maxMintAmount = 1;
     uint256 public timeDeployed;
@@ -1454,7 +1454,7 @@ contract LuceroSugarSkulls is ERC721Enumerable, Ownable {
     function mint(uint256 _mintAmount) public payable {
         require(
             block.timestamp >= timeDeployed + allowMintingAfter,
-            "Minting now allowed yet"
+            "Minting now allowed"
         );
 
         require(balanceOf(msg.sender) == 0, "Only 1 mint per account");
