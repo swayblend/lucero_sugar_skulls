@@ -62,7 +62,7 @@ contract('LuceroSugarSkulls', ([deployer, user]) => {
 
         it('Returns the max mint amount', async () => {
             result = await luceroSugarSkulls.maxMintAmount()
-            result.toString().should.equal('1')
+            result.toString().should.equal('5')
         })
 
         it('Returns the time deployed', async () => {
@@ -171,7 +171,7 @@ contract('LuceroSugarSkulls', ([deployer, user]) => {
 
             beforeEach(async () => {
                 // Some date in the future
-                const NFT_MINT_DATE = new Date("Apr 10, 2022 02:00:00").getTime().toString().slice(0, 10)
+                const NFT_MINT_DATE = new Date("Apr 13, 2022 22:30:00").getTime().toString().slice(0, 10)
 
                 luceroSugarSkulls = await LuceroSugarSkulls.new(
                     NAME,
@@ -231,8 +231,8 @@ contract('LuceroSugarSkulls', ([deployer, user]) => {
             })
 
             it('Sets the max batch mint amount', async () => {
-                let amount = 1 // Different from the default contract state
-                await luceroSugarSkulls.setmaxMintAmount(1, { from: deployer })
+                let amount = 5 // Different from the default contract state
+                await luceroSugarSkulls.setmaxMintAmount(5, { from: deployer })
                 result = await luceroSugarSkulls.maxMintAmount()
                 result.toString().should.equal(amount.toString())
             })

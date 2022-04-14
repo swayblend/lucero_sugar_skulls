@@ -10,6 +10,7 @@ import opensea from '../images/socials/opensea.svg'
 // Once I figure out how to properly import socials
 // import linkedin from '../images/socials/linkedin.svg' 
 import showcase from '../images/showcase.png'
+import opener from '../images/opener.png'
 import '../App.css'
 
 // Import Components
@@ -123,8 +124,8 @@ function App() {
 			return
 		}
 
-		if (ownerOf.length > 0) {
-			window.alert('You\'ve already minted!')
+		if (ownerOf.length > 5) {
+			window.alert('You\'ve already minted 5, your max!')
 			return
 		}
 
@@ -175,7 +176,7 @@ function App() {
 					<Row className='header my-3 p-3 mb-0 pb-0'>
 						<Col xs={12} md={12} lg={8} xxl={8}>
 							<h1>Lucero Sugar Skulls</h1>
-							<p className='sub-header'>Availble on 04 / 10 / 22</p>
+							<p className='sub-header'>Availble on 04 / 13 / 22</p>
 						</Col>
 						<Col className='flex social-icons'>
 							<a
@@ -202,7 +203,7 @@ function App() {
 					<Row className='flex m-3'>
 						<Col md={5} lg={4} xl={5} xxl={4} className='text-center'>
 							<img
-								src={`https://gateway.pinata.cloud/ipfs/QmSwsrZLG15v1B1xFhXZGFHtdfQAQZWbwCUC9aMDAYgCX6/${counter}.png`}
+								src={opener}
 								alt="Lucero Sugar Skulls"
 								className='showcase'
 							/>
