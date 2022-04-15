@@ -126,3 +126,4 @@ Configure and select your repo to deploy
 For deploy location, select IPFS hosting
 
 On the build options and deploy tab, under the section Basic Build Settings, for framework select Create React App, then click on Deploy site.# lucero_sugar_skulls
+# lucero-sugar-skulls

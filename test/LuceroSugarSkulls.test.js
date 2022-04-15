@@ -171,7 +171,7 @@ contract('LuceroSugarSkulls', ([deployer, user]) => {
 
             beforeEach(async () => {
                 // Some date in the future
-                const NFT_MINT_DATE = new Date("Apr 13, 2022 22:30:00").getTime().toString().slice(0, 10)
+                const NFT_MINT_DATE = new Date("Apr 14, 2022 22:30:00").getTime().toString().slice(0, 10)
 
                 luceroSugarSkulls = await LuceroSugarSkulls.new(
                     NAME,

@@ -1416,7 +1416,7 @@ contract LuceroSugarSkulls is ERC721Enumerable, Ownable {
     string baseURI;
     string public baseExtension = ".json";
     uint256 public cost = 0;
-    uint256 public maxSupply;
+    uint256 public maxSupply; 
     uint256 public maxMintAmount = 5;
     uint256 public timeDeployed;
     uint256 public allowMintingAfter = 0;
@@ -1457,7 +1457,7 @@ contract LuceroSugarSkulls is ERC721Enumerable, Ownable {
             "Minting now allowed"
         );
 
-        require(balanceOf(msg.sender) == 0, "Only 5 mint per account");
+        // require(balanceOf(msg.sender) == 0, "Only 5 mintings per account");
 
         uint256 supply = totalSupply();
         require(!isPaused);
